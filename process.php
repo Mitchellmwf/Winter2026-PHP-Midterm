@@ -1,6 +1,6 @@
 <?php
 
-    //Sanitize taskName input
+    //Sanitize inputs
     $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS));
     $author = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
     $review = trim(filter_input(INPUT_POST, 'review_text', FILTER_SANITIZE_SPECIAL_CHARS));
@@ -28,7 +28,7 @@
         header("refresh:3;url=index.php");
         exit;
     }
-    //make sure author is not empty
+    //make sure title is not empty
     if (empty($title) || $title == '' || $title == null) {
         echo "<p>Title cannot be empty.</p><p>You will be redirected to the homepage in 3 seconds.</p>
         <p>If you are not redirected, click <a href='index.php'>here</a>.</p>";
@@ -43,7 +43,6 @@
 
     //set up the query used named placeholders
     $sql = "INSERT INTO reviews(title, author, rating, review_text) VALUES (:title, :author, :rating, :review_text);";
-        //task_id will auto increment
 
     //prepare the query 
     $stmt = $pdo->prepare($sql); 

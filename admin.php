@@ -17,40 +17,38 @@
 <?php if (empty($reviews)){
     echo "<p>No Reviews yet.</p>";} ?>
 
-<div class="table-responsive">
-    <table class="table table-bordered table-striped align-middle">
+<div>
+    <table>
         <thead>
             <tr>
-            <th>Task #</th>
-            <th>Task</th>
-            <th>Task priority</th>
-            <th>Time spent on task</th>
-
-            <th>Created</th>
-            <th>Actions</th>
+            <th>Review </th>
+            <th>Book title</th>
+            <th>Book author</th>
+            <th>Rating</th>
+            <th>Review</th>
+            <th>Time</th>
             </tr>
         </thead>
 
         <tbody>
             <!-- Loop through orders and show in table -->
-            <?php foreach ($tasks as $task): ?>
+            <?php foreach ($reviews as $review): ?>
                 <tr>
-                <td><?= htmlspecialchars($task['task_id']); ?></td>
-                <td><?= htmlspecialchars($task['task_name']); ?></td>
-                <td><?= htmlspecialchars($task['task_priority']); ?></td>
-                <td><?= htmlspecialchars($task['task_time']); ?></td>
-                <td><?= htmlspecialchars($task['task_date']); ?></td>
+                <td><?= htmlspecialchars($review['id']); ?></td>
+                <td><?= htmlspecialchars($review['title']); ?></td>
+                <td><?= htmlspecialchars($review['author']); ?></td>
+                <td><?= htmlspecialchars($review['rating']); ?></td>
+                <td><?= htmlspecialchars($review['review_text']); ?></td>
+                <td><?= htmlspecialchars($review['created_at']); ?></td>
                 <td>        
                     <a
-                    class="btn btn-sm btn-warning"
-                    href="forms/update.php?task_id=<?= urlencode($task['task_id']); ?>">
+                    href="update.php?id=<?= urlencode($review['id']); ?>">
                     Update
                     </a>
             </br>
                     <a
-                    class="btn btn-sm btn-danger mt-2"
-                    href="forms/processDelete.php?task_id=<?= urlencode($task['task_id']); ?>"
-                    onclick="return confirm('Are you sure you want to delete this order?');">
+                    href="delete.php?id=<?= urlencode($review['id']); ?>"
+                    onclick="return confirm('Are you sure you want to delete this review?');">
                     Delete
                     </a>
                 </td>
